@@ -13,6 +13,7 @@
 		A9B6F5312991264C000A9A43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9B6F52F2991264C000A9A43 /* Main.storyboard */; };
 		A9B6F53329912651000A9A43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9B6F53229912651000A9A43 /* Assets.xcassets */; };
 		A9B6F53629912651000A9A43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9B6F53429912651000A9A43 /* LaunchScreen.storyboard */; };
+		A9B6F544299126DC000A9A43 /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B6F543299126DC000A9A43 /* ConversationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A9B6F53229912651000A9A43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9B6F53529912651000A9A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9B6F53729912651000A9A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9B6F543299126DC000A9A43 /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,12 @@
 		A9B6F5282991264C000A9A43 /* ChatWithFirestore */ = {
 			isa = PBXGroup;
 			children = (
+				A9B6F54229912682000A9A43 /* Model */,
+				A9B6F54129912680000A9A43 /* View */,
+				A9B6F5402991267E000A9A43 /* ViewModel */,
+				A9B6F53F2991267C000A9A43 /* Controller */,
+				A9B6F53D29912677000A9A43 /* API */,
+				A9B6F53E2991267A000A9A43 /* Uitils */,
 				A9B6F5292991264C000A9A43 /* AppDelegate.swift */,
 				A9B6F52B2991264C000A9A43 /* SceneDelegate.swift */,
 				A9B6F52D2991264C000A9A43 /* ViewController.swift */,
@@ -65,6 +73,49 @@
 				A9B6F53729912651000A9A43 /* Info.plist */,
 			);
 			path = ChatWithFirestore;
+			sourceTree = "<group>";
+		};
+		A9B6F53D29912677000A9A43 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		A9B6F53E2991267A000A9A43 /* Uitils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Uitils;
+			sourceTree = "<group>";
+		};
+		A9B6F53F2991267C000A9A43 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A9B6F543299126DC000A9A43 /* ConversationController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A9B6F5402991267E000A9A43 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A9B6F54129912680000A9A43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A9B6F54229912682000A9A43 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +191,7 @@
 			files = (
 				A9B6F52E2991264C000A9A43 /* ViewController.swift in Sources */,
 				A9B6F52A2991264C000A9A43 /* AppDelegate.swift in Sources */,
+				A9B6F544299126DC000A9A43 /* ConversationController.swift in Sources */,
 				A9B6F52C2991264C000A9A43 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,7 +339,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RAJ2UPL4CG;
+				DEVELOPMENT_TEAM = URTJJ24R4X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ChatWithFirestore/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -315,7 +367,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RAJ2UPL4CG;
+				DEVELOPMENT_TEAM = URTJJ24R4X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ChatWithFirestore/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
