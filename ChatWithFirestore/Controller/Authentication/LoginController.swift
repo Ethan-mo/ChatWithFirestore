@@ -8,8 +8,14 @@
 import Foundation
 import UIKit
 
+protocol AuthenticationControllerProtocol {
+    func checkFormStatus()
+}
+
 class LoginController: UIViewController {
     // MARK: - Properties
+    
+    private var viewModel = LoginViewModel()
     
     private let logoImageView: UIImageView = {
         let iv = UIImageView()
@@ -59,6 +65,7 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         UIApplication.shared.statusBarStyle = .lightContent
         configureUI()
+        checkFormStatus()
      }
     
     // MARK: - API
@@ -70,6 +77,14 @@ class LoginController: UIViewController {
     @objc func handleShowSignUp() {
         let controller = RegistrationController()
         navigationController?.pushViewController(controller, animated: true)
+    }
+    @objc func textDidChange(sender: UITextField) {
+        if sender == emailTextField {
+            viewModel.email = sender.text
+        }else{
+            viewModel.pass = sender.text
+        }
+        checkFormStatus()
     }
     
     // MARK: - Helpers
@@ -91,5 +106,24 @@ class LoginController: UIViewController {
         view.addSubview(dontAccountButton)
         dontAccountButton.anchor(bottom:view.bottomAnchor, paddingBottom: 30)
         dontAccountButton.centerX(inView: self.view)
+        
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+}
+
+extension LoginController: AuthenticationControllerProtocol {
+    func checkFormStatus() {
+        if viewModel.formIsValid {
+            loginButton.isEnabled = true
+            loginButton.setTitle("로그인", for: .normal)
+        }else {
+            loginButton.isEnabled = false
+            loginButton.setTitle("이메일과 비밀번호를 입력해주세요.", for: .normal)
+        }
     }
 }

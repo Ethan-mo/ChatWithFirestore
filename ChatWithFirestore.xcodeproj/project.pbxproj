@@ -18,6 +18,8 @@
 		A9B6F54929912F31000A9A43 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B6F54829912F31000A9A43 /* RegistrationController.swift */; };
 		A9B6F54B2991DB6A000A9A43 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B6F54A2991DB6A000A9A43 /* Utilities.swift */; };
 		A9B6F54D2991DBC6000A9A43 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B6F54C2991DBC6000A9A43 /* Extension.swift */; };
+		A9BD224429960B3C00AE1987 /* RagistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BD224329960B3C00AE1987 /* RagistrationViewModel.swift */; };
+		A9FDF2CF2995FAE4004EE7EE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		A9B6F54829912F31000A9A43 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		A9B6F54A2991DB6A000A9A43 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		A9B6F54C2991DBC6000A9A43 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		A9BD224329960B3C00AE1987 /* RagistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RagistrationViewModel.swift; sourceTree = "<group>"; };
+		A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,8 @@
 		A9B6F5402991267E000A9A43 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */,
+				A9BD224329960B3C00AE1987 /* RagistrationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -212,11 +218,13 @@
 				A9B6F52E2991264C000A9A43 /* ViewController.swift in Sources */,
 				A9B6F52A2991264C000A9A43 /* AppDelegate.swift in Sources */,
 				A9B6F54B2991DB6A000A9A43 /* Utilities.swift in Sources */,
+				A9BD224429960B3C00AE1987 /* RagistrationViewModel.swift in Sources */,
 				A9B6F544299126DC000A9A43 /* ConversationController.swift in Sources */,
 				A9B6F52C2991264C000A9A43 /* SceneDelegate.swift in Sources */,
 				A9B6F54929912F31000A9A43 /* RegistrationController.swift in Sources */,
 				A9B6F54729912F1D000A9A43 /* LoginController.swift in Sources */,
 				A9B6F54D2991DBC6000A9A43 /* Extension.swift in Sources */,
+				A9FDF2CF2995FAE4004EE7EE /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
