@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 final class RegistrationController: UIViewController {
     // MARK: - Properties
@@ -18,6 +19,7 @@ final class RegistrationController: UIViewController {
         let btn = UIButton(type: .system)
         btn.setImage(UIImage(named: "plus_photo"), for: .normal)
         btn.tintColor = .white
+        btn.imageView?.contentMode = .scaleAspectFill
         btn.setDimensions(width: 128, height: 128)
         btn.addTarget(self, action: #selector(handleAddProfilePhoto), for: .touchUpInside)
         return btn
@@ -87,7 +89,47 @@ final class RegistrationController: UIViewController {
     }
     
     @objc func handleSignUp() {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let fullname = fullNameTextField.text else { return }
+        guard let nickname = nickNameTextField.text?.lowercased() else { return }
+        guard let profileImage = profileImage else { return }
         
+        guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else { return }
+        let filename = NSUUID().uuidString
+        let ref = Storage.storage().reference(withPath: "/profile_image/\(filename)")
+        
+        ref.putData(imageData) { meta, error in
+            if let error = error {
+                print("DEBUG1️⃣: 이미지 업로드에 실패했습니다. error: \(error.localizedDescription)")
+                return
+            }
+            ref.downloadURL { url, error in
+                guard let profileImageUrl = url?.absoluteString else { return }
+                
+                Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                    if let error = error {
+                        print("DEBUG2️⃣: 계정 생성에 실패했습니다. error: \(error.localizedDescription)")
+                        return
+                    }
+                    print("DEBUG2️⃣: 계정이 정상적으로 등록되었습니다.")
+                    self.alertRegistration()
+                    guard let uid = result?.user.uid else { return }
+                    let data = ["email": email,
+                                "fullname": fullname,
+                                "profileImageUrl": profileImageUrl,
+                                "username": nickname] as [String: Any]
+                    print("DEBUG: data:\(data), uid: \(uid)")
+                    Firestore.firestore().collection("users").document(uid).setData(data) { error in
+                        if let error = error {
+                            print("DEBUG3️⃣: 유저 정보등록에 실패했습니다. error: \(error.localizedDescription)")
+                            return
+                        }
+                        print("DEBUG3️⃣: 유저 정보등록에 성공했습니다.")
+                    }
+                }
+            }
+        }
     }
     @objc func handleShowLogin() {
         print("DEBUG: 로그인 페이지로 이동합니다.")
@@ -139,6 +181,15 @@ final class RegistrationController: UIViewController {
         fullNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         nickNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
+    
+    func alertRegistration() {
+        let alert = UIAlertController(title: "알림", message: "계정이 정상적으로 등록되었습니다.", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "확인", style: .cancel) { action in
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(alertAction)
+        self.present(alert, animated: true)
+    }
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -149,7 +200,7 @@ final class RegistrationController: UIViewController {
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as? UIImage
-        
+        profileImage = image
         plusPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         plusPhotoButton.layer.cornerRadius = 64
         plusPhotoButton.layer.masksToBounds = true
