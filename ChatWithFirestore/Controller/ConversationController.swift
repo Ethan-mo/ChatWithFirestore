@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 private let reuserIdentifier: String = "ConversationCell"
 
@@ -17,15 +18,44 @@ final class ConversationController: UIViewController {
         super.viewDidLoad()
         UIApplication.shared.statusBarStyle = .lightContent
         configureUI()
+        authenticateUser()
     }
-    // MARK: - API
-    
+
     // MARK: - Selector
     @objc func showProfile() {
         print("DEBUG: 눌렀습니다.")
+        logout()
+    }
+    
+    // MARK: - API
+    
+    func authenticateUser() {
+        if Auth.auth().currentUser?.uid == nil {
+            print("DEBUG: 로그인 페이지로 변경됩니다.")
+            presentLoginScreen()
+        }else {
+            print("DEBUG: 첫 페이지입니다.")
+        }
+    }
+    
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+        }catch {
+            print("DEBUG: 로그아웃에 실패하였습니다.")
+        }
+        
     }
     
     // MARK: - Helpers
+    func presentLoginScreen() {
+        DispatchQueue.main.async {
+            let controller = LoginController()
+            let nav = UINavigationController(rootViewController: controller)
+            self.present(nav, animated: true)
+        }
+    }
+    
     func configureUI() {
         view.backgroundColor = .white
         configureTableView()
