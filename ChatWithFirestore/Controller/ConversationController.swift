@@ -46,7 +46,6 @@ final class ConversationController: UIViewController {
             print("DEBUG: 로그아웃에 실패하였습니다.")
         }
         print("DEBUG: 로그아웃에 성공")
-        print("DEBUG: \(Auth.auth().currentUser)")
         if Auth.auth().currentUser == nil {
             presentLoginScreen()
         }
