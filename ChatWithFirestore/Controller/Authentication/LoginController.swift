@@ -73,10 +73,18 @@ class LoginController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
+            if let error = error {
+                print("DEBUG: 로그인에 실패하였습니다. error\(error.localizedDescription)")
+                return
+            }
             if let user = user {
+                // 현재 present되고있는 LoginController를 의미
                 self.dismiss(animated: true)
             }else {
-                customAlert(view: self, alertTitle: "알림", alertMessage: "존재하지 않는 아이디입니다.")
+                customAlert(view: self, alertTitle: "알림", alertMessage: "존재하지 않는 아이디입니다.") { action in
+                    // Alert을 끄는 동작
+                    self.dismiss(animated: true)
+                }
             }
             
         }

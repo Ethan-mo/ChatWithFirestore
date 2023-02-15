@@ -113,7 +113,7 @@ final class RegistrationController: UIViewController {
                         return
                     }
                     print("DEBUG2️⃣: 계정이 정상적으로 등록되었습니다.")
-                    self.alertRegistration()
+                    
                     guard let uid = result?.user.uid else { return }
                     let data = ["email": email,
                                 "fullname": fullname,
@@ -126,6 +126,13 @@ final class RegistrationController: UIViewController {
                             return
                         }
                         print("DEBUG3️⃣: 유저 정보등록에 성공했습니다.")
+                        // 사용자 등록 후 바로 다음화면으로 가도록..
+                        customAlert(view: self, alertTitle: "알림", alertMessage: "계정이 정상적으로 등록되었습니다.") { _ in
+                            self.dismiss(animated: true)
+                            // 아래 코드는 바로 로그인이 아니라 LoginController로 이동
+                            // self.navigationController?.popViewController(animated: true)
+                        }
+                        
                     }
                 }
             }
@@ -181,17 +188,7 @@ final class RegistrationController: UIViewController {
         fullNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         nickNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
-    
-    func alertRegistration() {
-        let alert = UIAlertController(title: "알림", message: "계정이 정상적으로 등록되었습니다.", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "확인", style: .cancel) { action in
-            self.navigationController?.popViewController(animated: true)
-        }
-        alert.addAction(alertAction)
-        self.present(alert, animated: true)
-    }
-
-    
+        
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }

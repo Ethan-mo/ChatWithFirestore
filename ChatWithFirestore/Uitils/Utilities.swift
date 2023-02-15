@@ -43,9 +43,9 @@ class Utilities{
     }
 }
 
-func customAlert(view:UIViewController, alertTitle:String, alertMessage:String) {
+func customAlert(view:UIViewController, alertTitle:String, alertMessage:String,completion:@escaping(UIAlertAction) -> Void) {
     let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-    let action = UIAlertAction(title: "확인", style: .cancel)
+    let action = UIAlertAction(title: "확인", style: .cancel, handler: completion)
     alert.addAction(action)
     view.present(alert, animated: true)
 }
