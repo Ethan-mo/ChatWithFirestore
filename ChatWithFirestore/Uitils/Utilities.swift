@@ -42,3 +42,10 @@ class Utilities{
         return btn
     }
 }
+
+func customAlert(view:UIViewController, alertTitle:String, alertMessage:String) {
+    let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+    let action = UIAlertAction(title: "확인", style: .cancel)
+    alert.addAction(action)
+    view.present(alert, animated: true)
+}

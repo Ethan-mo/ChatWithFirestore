@@ -4,9 +4,8 @@
 //
 //  Created by 모상현 on 2023/02/06.
 //
-
-import Foundation
 import UIKit
+import Firebase
 
 protocol AuthenticationControllerProtocol {
     func checkFormStatus()
@@ -70,9 +69,24 @@ class LoginController: UIViewController {
     
     // MARK: - API
     
+    func login() {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        Auth.auth().signIn(withEmail: email, password: password) { user, error in
+            if let user = user {
+                self.dismiss(animated: true)
+                print("DEBUG: 정상적으로 로그인되었습니다.")
+            }else {
+                customAlert(view: self, alertTitle: "알림", alertMessage: "존재하지 않는 아이디입니다.")
+                print("DEBUG: 존재하지 않는 아이디입니다.")
+            }
+            
+        }
+    }
+    
     // MARK: - Selector
     @objc func handleLogin() {
-        
+        login()
     }
     @objc func handleShowSignUp() {
         let controller = RegistrationController()

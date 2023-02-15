@@ -17,10 +17,11 @@ final class ConversationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.shared.statusBarStyle = .lightContent
+        //logout()
         configureUI()
         authenticateUser()
     }
-
+    
     // MARK: - Selector
     @objc func showProfile() {
         print("DEBUG: 눌렀습니다.")
@@ -44,7 +45,11 @@ final class ConversationController: UIViewController {
         }catch {
             print("DEBUG: 로그아웃에 실패하였습니다.")
         }
-        //test
+        print("DEBUG: 로그아웃에 성공")
+        print("DEBUG: \(Auth.auth().currentUser)")
+        if Auth.auth().currentUser == nil {
+            presentLoginScreen()
+        }
     }
     
     // MARK: - Helpers
@@ -52,6 +57,7 @@ final class ConversationController: UIViewController {
         DispatchQueue.main.async {
             let controller = LoginController()
             let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true)
         }
     }
