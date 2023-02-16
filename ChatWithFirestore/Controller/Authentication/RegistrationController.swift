@@ -83,6 +83,20 @@ final class RegistrationController: UIViewController {
         configureNotificationObservers()
     }
     // MARK: - API
+    func Registration(authCredentials:AuthCredentials) {
+        AuthService.shared.registerUser(credentials: authCredentials) { error, ref in
+            if let error = error {
+                print("DEBUG: 유저 등록중 오류 발생 error: \(error)")
+                return
+            }
+            customAlert(view: self, alertTitle: "알림", alertMessage: "계정이 정상적으로 등록되었습니다.") { _ in
+                self.dismiss(animated: true)
+                // 아래 코드는 바로 로그인이 아니라 LoginController로 이동
+                // self.navigationController?.popViewController(animated: true)
+            }
+            
+        }
+    }
     // MARK: - Selector
     @objc func handleAddProfilePhoto() {
         present(imagePicker, animated: true, completion: nil)
@@ -94,49 +108,7 @@ final class RegistrationController: UIViewController {
         guard let fullname = fullNameTextField.text else { return }
         guard let nickname = nickNameTextField.text?.lowercased() else { return }
         guard let profileImage = profileImage else { return }
-        
-        guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else { return }
-        let filename = NSUUID().uuidString
-        let ref = Storage.storage().reference(withPath: "/profile_image/\(filename)")
-        
-        ref.putData(imageData) { meta, error in
-            if let error = error {
-                print("DEBUG1️⃣: 이미지 업로드에 실패했습니다. error: \(error.localizedDescription)")
-                return
-            }
-            ref.downloadURL { url, error in
-                guard let profileImageUrl = url?.absoluteString else { return }
-                
-                Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                    if let error = error {
-                        print("DEBUG2️⃣: 계정 생성에 실패했습니다. error: \(error.localizedDescription)")
-                        return
-                    }
-                    print("DEBUG2️⃣: 계정이 정상적으로 등록되었습니다.")
-                    
-                    guard let uid = result?.user.uid else { return }
-                    let data = ["email": email,
-                                "fullname": fullname,
-                                "profileImageUrl": profileImageUrl,
-                                "username": nickname] as [String: Any]
-                    print("DEBUG: data:\(data), uid: \(uid)")
-                    Firestore.firestore().collection("users").document(uid).setData(data) { error in
-                        if let error = error {
-                            print("DEBUG3️⃣: 유저 정보등록에 실패했습니다. error: \(error.localizedDescription)")
-                            return
-                        }
-                        print("DEBUG3️⃣: 유저 정보등록에 성공했습니다.")
-                        // 사용자 등록 후 바로 다음화면으로 가도록..
-                        customAlert(view: self, alertTitle: "알림", alertMessage: "계정이 정상적으로 등록되었습니다.") { _ in
-                            self.dismiss(animated: true)
-                            // 아래 코드는 바로 로그인이 아니라 LoginController로 이동
-                            // self.navigationController?.popViewController(animated: true)
-                        }
-                        
-                    }
-                }
-            }
-        }
+        Registration(authCredentials:AuthCredentials(email: email, password: password, fullname: fullname, username: nickname, profileImage: profileImage))
     }
     @objc func handleShowLogin() {
         print("DEBUG: 로그인 페이지로 이동합니다.")
