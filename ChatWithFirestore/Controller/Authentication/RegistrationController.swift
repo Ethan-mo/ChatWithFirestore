@@ -84,17 +84,22 @@ final class RegistrationController: UIViewController {
     }
     // MARK: - API
     func Registration(authCredentials:AuthCredentials) {
-        AuthService.shared.registerUser(credentials: authCredentials) { error, ref in
+        AuthService.shared.registerUser(credentials: authCredentials) { error in
             if let error = error {
-                print("DEBUG: 유저 등록중 오류 발생 error: \(error)")
-                return
+                print("DEBUG3️⃣: 유저 정보등록에 실패했습니다. error: \(error.localizedDescription)")
+                self.showLoader(false)
+                customAlert(view: self, alertTitle: "알림", alertMessage: "계정 등록에 실패하였습니다.") { _ in
+                    return
+                }
             }
+            print("DEBUG3️⃣: 유저 정보등록에 성공했습니다.")
+            self.showLoader(false)
             customAlert(view: self, alertTitle: "알림", alertMessage: "계정이 정상적으로 등록되었습니다.") { _ in
+                
                 self.dismiss(animated: true)
                 // 아래 코드는 바로 로그인이 아니라 LoginController로 이동
                 // self.navigationController?.popViewController(animated: true)
             }
-            
         }
     }
     // MARK: - Selector
@@ -108,6 +113,7 @@ final class RegistrationController: UIViewController {
         guard let fullname = fullNameTextField.text else { return }
         guard let nickname = nickNameTextField.text?.lowercased() else { return }
         guard let profileImage = profileImage else { return }
+        showLoader(true,withText: "Registering")
         Registration(authCredentials:AuthCredentials(email: email, password: password, fullname: fullname, username: nickname, profileImage: profileImage))
     }
     @objc func handleShowLogin() {
@@ -127,7 +133,16 @@ final class RegistrationController: UIViewController {
         }
         checkFormStatus()
     }
-    
+    @objc func keyboardWillShow() {
+        if view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= 88
+        }
+    }
+    @objc func keyboardWillHide() {
+        if view.frame.origin.y != 0 {
+            self.view.frame.origin.y += 88
+        }
+    }
     // MARK: - Helpers
     func configureUI() {
         navigationController?.navigationBar.isHidden = true
@@ -159,6 +174,9 @@ final class RegistrationController: UIViewController {
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         fullNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         nickNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

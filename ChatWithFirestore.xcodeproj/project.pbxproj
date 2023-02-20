@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		05D142C6C64EA81965D0C56C /* Pods_ChatWithFirestore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9023B7B296408360F879D7DB /* Pods_ChatWithFirestore.framework */; };
 		A9AD2D3E299BBF5900E12142 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD2D3D299BBF5900E12142 /* User.swift */; };
+		A9AD2D42299E13FE00E12142 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD2D41299E13FE00E12142 /* AuthService.swift */; };
+		A9AD2D44299E145C00E12142 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD2D43299E145C00E12142 /* Constants.swift */; };
 		A9B6F52A2991264C000A9A43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B6F5292991264C000A9A43 /* AppDelegate.swift */; };
 		A9B6F52C2991264C000A9A43 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B6F52B2991264C000A9A43 /* SceneDelegate.swift */; };
 		A9B6F52E2991264C000A9A43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B6F52D2991264C000A9A43 /* ViewController.swift */; };
@@ -30,6 +32,8 @@
 		07C9EC2C8D5261B862C6FD78 /* Pods-ChatWithFirestore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatWithFirestore.debug.xcconfig"; path = "Target Support Files/Pods-ChatWithFirestore/Pods-ChatWithFirestore.debug.xcconfig"; sourceTree = "<group>"; };
 		9023B7B296408360F879D7DB /* Pods_ChatWithFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatWithFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AD2D3D299BBF5900E12142 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A9AD2D41299E13FE00E12142 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		A9AD2D43299E145C00E12142 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A9B6F5262991264C000A9A43 /* ChatWithFirestore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatWithFirestore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B6F5292991264C000A9A43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9B6F52B2991264C000A9A43 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				A9BEEE4F299B466700F6264D /* UserService.swift */,
+				A9AD2D41299E13FE00E12142 /* AuthService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			children = (
 				A9B6F54A2991DB6A000A9A43 /* Utilities.swift */,
 				A9B6F54C2991DBC6000A9A43 /* Extension.swift */,
+				A9AD2D43299E145C00E12142 /* Constants.swift */,
 			);
 			path = Uitils;
 			sourceTree = "<group>";
@@ -303,10 +309,12 @@
 				A9BD224429960B3C00AE1987 /* RagistrationViewModel.swift in Sources */,
 				A9B6F544299126DC000A9A43 /* ConversationController.swift in Sources */,
 				A9B6F52C2991264C000A9A43 /* SceneDelegate.swift in Sources */,
+				A9AD2D42299E13FE00E12142 /* AuthService.swift in Sources */,
 				A9BEEE50299B466700F6264D /* UserService.swift in Sources */,
 				A9B6F54929912F31000A9A43 /* RegistrationController.swift in Sources */,
 				A9AD2D3E299BBF5900E12142 /* User.swift in Sources */,
 				A9B6F54729912F1D000A9A43 /* LoginController.swift in Sources */,
+				A9AD2D44299E145C00E12142 /* Constants.swift in Sources */,
 				A9B6F54D2991DBC6000A9A43 /* Extension.swift in Sources */,
 				A9FDF2CF2995FAE4004EE7EE /* LoginViewModel.swift in Sources */,
 			);

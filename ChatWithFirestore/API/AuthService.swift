@@ -27,7 +27,7 @@ struct AuthService{
     // reference()는 현재 App에서 발생한 특정 Data를 Firebase의 Database에 저장
     // Child는 폴더와 같은 역할, 이를 통해서 DB상에 User폴더안에 특정 uid별로 DB가 저장된다.
     
-    func registerUser(credentials:AuthCredentials, completion: @escaping(Error?, DatabaseReference) -> Void){
+    func registerUser(credentials:AuthCredentials, completion: ((Error?) -> Void)?){
         let email = credentials.email
         let password = credentials.password
         let fullname = credentials.fullname
@@ -42,6 +42,11 @@ struct AuthService{
         let storageRef = STORAGE_PROFILE_IMAGES.child(filename)
         // 4) 특정 위치에 image Data저장하기
         storageRef.putData(imageData,metadata: nil){ (meta, error) in
+            if let error = error{
+                print("DEBUG: Error is \(error.localizedDescription)")
+                completion!(error)
+                return
+            }
             // 5) 저장된 Image Data를 다운로드 받을 수 있는 Url을 불러온다.
             storageRef.downloadURL { (url,error) in
                 guard let profileImageUrl = url?.absoluteString else { return }
@@ -49,6 +54,7 @@ struct AuthService{
                 Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                     if let error = error{
                         print("DEBUG: Error is \(error.localizedDescription)")
+                        completion!(error)
                         return
                     }
                     guard let uid = result?.user.uid else { return }
@@ -58,14 +64,8 @@ struct AuthService{
                                   "fullname": fullname,
                                   "profileImageUrl":profileImageUrl]
                     // 2) 회원가입 인증으로 생성된 계정의 uid를 불러오고, 해당 uid를 가진 User Data에 접근하는 Reference인스턴스를 통해 Data를 저장한다.
-                    print("DEBUG3️⃣: Realtime DB에 유저 정보등록에 성공했습니다.")
-                    FS_USER.document(uid).setData(values) { error in
-                        if let error = error {
-                            print("DEBUG3️⃣: 유저 정보등록에 실패했습니다. error: \(error.localizedDescription)")
-                            return
-                        }
-                        print("DEBUG3️⃣: 유저 정보등록에 성공했습니다.")
-                    }
+                    
+                    FS_USER.document(uid).setData(values,completion: completion)
                 }
             }
         }
