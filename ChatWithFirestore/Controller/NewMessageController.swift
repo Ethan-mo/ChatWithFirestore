@@ -61,3 +61,12 @@ extension NewMessageController {
         return cell
     }
 }
+
+// MARK: - UITableViewDelegate
+extension NewMessageController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = ChatController(user: userList[indexPath.row])
+        print("DEUBG: 현재 선택된 유저의 닉네임은: \(userList[indexPath.row].nickname)")
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
