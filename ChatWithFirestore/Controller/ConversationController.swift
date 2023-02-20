@@ -13,6 +13,18 @@ private let reuserIdentifier: String = "ConversationCell"
 final class ConversationController: UIViewController {
     // MARK: - Properties
     private let tableView = UITableView()
+    
+    private lazy var addChat: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setDimensions(width: 60, height: 60)
+        btn.layer.cornerRadius = 30
+        btn.setImage(UIImage(systemName: "plus"), for: .normal)
+        btn.tintColor = .white
+        btn.backgroundColor = .systemPurple
+        btn.addTarget(self, action: #selector(addChatting), for: .touchUpInside)
+        return btn
+    }()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +38,13 @@ final class ConversationController: UIViewController {
     @objc func showProfile() {
         print("DEBUG: 눌렀습니다.")
         logout()
+    }
+    @objc func addChatting() {
+        print("DEBUG: 채팅하자")
+        let controller = NewMessageController()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
     }
     
     // MARK: - API
@@ -65,6 +84,8 @@ final class ConversationController: UIViewController {
         view.backgroundColor = .white
         configureTableView()
         configureNavigation()
+        view.addSubview(addChat)
+        addChat.anchor(bottom:view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingBottom: 16, paddingRight: 24)
     }
     
     func configureTableView() {
@@ -81,20 +102,7 @@ final class ConversationController: UIViewController {
     }
     
     func configureNavigation() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.backgroundColor = .systemPurple
-        
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        
-        navigationItem.title = "Messages"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.isTranslucent = true
+        configureNavigationBar(withTitle: "Messages", prefersLargeTitles: true) 
         
         
         let image = UIImage(systemName: "person.circle.fill")

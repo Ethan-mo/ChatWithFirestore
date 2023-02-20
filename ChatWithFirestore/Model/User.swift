@@ -7,13 +7,17 @@
 
 import Foundation
 
-class User {
+struct User {
+    let uid: String
+    let email: String
     let fullname: String
     let nickname: String
-    let profileImageUrl: URL?
-    init(fullname: String, nickname: String, profileImageUrl: URL?) {
-        self.fullname = fullname
-        self.nickname = nickname
-        self.profileImageUrl = profileImageUrl
+    let profileImageUrl: String?
+    init(dictionary: [String : Any]) {
+        self.uid = dictionary["uid"] as? String ?? ""
+        self.email = dictionary["email"] as? String ?? ""
+        self.fullname = dictionary["fullname"] as? String ?? ""
+        self.nickname = dictionary["username"] as? String ?? ""
+        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
     }
 }

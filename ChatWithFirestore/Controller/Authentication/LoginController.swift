@@ -81,7 +81,6 @@ class LoginController: UIViewController {
                     // Alert을 끄는 동작
                     return
                 }
-                print("DEBUG: 로그인에 실패하였습니다. error\(error.localizedDescription)")
             }
             if let user = user {
                 // 현재 present되고있는 LoginController를 의미
