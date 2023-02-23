@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol NewMessageControllerDelegate {
+    func moveToChatController(user:User)
+}
 
 let reuseIdentifier = "UserCell"
 
 class NewMessageController: UITableViewController {
     // MARK: - Properties
+    
+    var delegate: NewMessageControllerDelegate?
+    
     var userList = [User]() {
         didSet{
             tableView.reloadData()
@@ -34,7 +40,6 @@ class NewMessageController: UITableViewController {
     func fetchUsers() {
         UserService.fetchUsers { userList in
             self.userList = userList
-            print("DEBUG: \(self.userList)")
             print("DEBUG: 출력완료")
         }
     }
@@ -65,9 +70,8 @@ extension NewMessageController {
 // MARK: - UITableViewDelegate
 extension NewMessageController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = ChatController(user: userList[indexPath.row])
-        print("DEUBG: 현재 선택된 유저의 닉네임은: \(userList[indexPath.row].nickname)")
-        print("DEBUG: Test")
-        navigationController?.pushViewController(controller, animated: true)
+        let user = userList[indexPath.row]
+        self.dismiss(animated: true)
+        delegate?.moveToChatController(user: user)
     }
 }

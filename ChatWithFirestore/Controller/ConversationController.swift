@@ -42,6 +42,7 @@ final class ConversationController: UIViewController {
     @objc func addChatting() {
         print("DEBUG: 채팅하자")
         let controller = NewMessageController()
+        controller.delegate = self
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
@@ -130,4 +131,13 @@ extension ConversationController: UITableViewDelegate {
         print("DEBUG: 일단 눌러는 진다. ㅋ ")
     }
     
+}
+
+extension ConversationController: NewMessageControllerDelegate {
+    func moveToChatController(user: User) {
+        let controller = ChatController(user: user)
+        print("DEUBG: 현재 선택된 유저의 닉네임은: \(user.nickname)")
+        print("DEBUG: Test")
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
