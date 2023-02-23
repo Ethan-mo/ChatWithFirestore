@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05D142C6C64EA81965D0C56C /* Pods_ChatWithFirestore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9023B7B296408360F879D7DB /* Pods_ChatWithFirestore.framework */; };
+		A94CE07729A709BC0025F9E3 /* CustomInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94CE07629A709BC0025F9E3 /* CustomInputAccessoryView.swift */; };
 		A99025B029A6442F00AC0FCA /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99025AF29A6442F00AC0FCA /* ChatController.swift */; };
 		A9AD2D3E299BBF5900E12142 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD2D3D299BBF5900E12142 /* User.swift */; };
 		A9AD2D42299E13FE00E12142 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD2D41299E13FE00E12142 /* AuthService.swift */; };
@@ -28,12 +29,14 @@
 		A9BEEE50299B466700F6264D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEEE4F299B466700F6264D /* UserService.swift */; };
 		A9C174F229A48B3A00E30BE4 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C174F129A48B3A00E30BE4 /* NewMessageController.swift */; };
 		A9C174F629A5E95C00E30BE4 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C174F529A5E95C00E30BE4 /* UserCell.swift */; };
+		A9CAAABC29ACC4F800FAFA64 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CAAABB29ACC4F800FAFA64 /* MessageCell.swift */; };
 		A9FDF2CF2995FAE4004EE7EE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		07C9EC2C8D5261B862C6FD78 /* Pods-ChatWithFirestore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatWithFirestore.debug.xcconfig"; path = "Target Support Files/Pods-ChatWithFirestore/Pods-ChatWithFirestore.debug.xcconfig"; sourceTree = "<group>"; };
 		9023B7B296408360F879D7DB /* Pods_ChatWithFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatWithFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A94CE07629A709BC0025F9E3 /* CustomInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAccessoryView.swift; sourceTree = "<group>"; };
 		A99025AF29A6442F00AC0FCA /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		A9AD2D3D299BBF5900E12142 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A9AD2D41299E13FE00E12142 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -56,6 +59,7 @@
 		A9BEEE4F299B466700F6264D /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		A9C174F129A48B3A00E30BE4 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		A9C174F529A5E95C00E30BE4 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		A9CAAABB29ACC4F800FAFA64 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FC428156DF59A4043AA34B5E /* Pods-ChatWithFirestore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatWithFirestore.release.xcconfig"; path = "Target Support Files/Pods-ChatWithFirestore/Pods-ChatWithFirestore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				A9C174F529A5E95C00E30BE4 /* UserCell.swift */,
+				A94CE07629A709BC0025F9E3 /* CustomInputAccessoryView.swift */,
+				A9CAAABB29ACC4F800FAFA64 /* MessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -322,6 +328,7 @@
 				A9BEEE50299B466700F6264D /* UserService.swift in Sources */,
 				A9C174F629A5E95C00E30BE4 /* UserCell.swift in Sources */,
 				A9B6F54929912F31000A9A43 /* RegistrationController.swift in Sources */,
+				A9CAAABC29ACC4F800FAFA64 /* MessageCell.swift in Sources */,
 				A9AD2D3E299BBF5900E12142 /* User.swift in Sources */,
 				A9B6F54729912F1D000A9A43 /* LoginController.swift in Sources */,
 				A9C174F229A48B3A00E30BE4 /* NewMessageController.swift in Sources */,
@@ -329,6 +336,7 @@
 				A99025B029A6442F00AC0FCA /* ChatController.swift in Sources */,
 				A9B6F54D2991DBC6000A9A43 /* Extension.swift in Sources */,
 				A9FDF2CF2995FAE4004EE7EE /* LoginViewModel.swift in Sources */,
+				A94CE07729A709BC0025F9E3 /* CustomInputAccessoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

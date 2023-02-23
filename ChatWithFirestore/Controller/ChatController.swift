@@ -7,9 +7,15 @@
 
 import UIKit
 
+private let reuseIdentifierMessageCell = "MessageCell"
+
 class ChatController: UICollectionViewController {
     // MARK: - Properties
-    private var user:User
+    private let user: User
+    private lazy var customInputView: CustomInputAccessoryView = {
+        let iv = CustomInputAccessoryView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
+        return iv
+    }()
     // MARK: - Lifecycle
     init(user: User) {
         self.user = user
@@ -24,21 +30,43 @@ class ChatController: UICollectionViewController {
         super.viewDidLoad()
         configureUI()
     }
+    // 키보드와 함께 사용자 입력작업을 수행하는 뷰 컨트롤러에서 사용하는 것이다.
+    // customInputView를 사용할 때, 사용하고자 한다.
+    override var inputAccessoryView: UIView? {
+        get { return customInputView }
+    }
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
     
     // MARK: - Selector
     // MARK: - API
     // MARK: - Helper
+    
     func configureUI() {
-        collectionView.backgroundColor = .white
+        //collectionView.backgroundColor = .white
+        configureNavigationBar(withTitle: user.nickname, prefersLargeTitles: false)
+        
+        collectionView.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifierMessageCell)
+        collectionView.alwaysBounceVertical = true
     }
 }
 
 extension ChatController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 5
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierMessageCell, for: indexPath) as! MessageCell
         return cell
+    }
+}
+
+extension ChatController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 16, left: 0, bottom: 16, right: 0)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 50)
     }
 }
