@@ -7,16 +7,16 @@
 
 import UIKit
 
-protocol NewMessageControllerDelegate {
-    func moveToChatController(user:User)
+protocol NewMessageControllerDelegate: class {
+    func moveToChatController(_ controller: NewMessageController , wantsToStartChatWith user:User)
 }
 
-let reuseIdentifier = "UserCell"
+private let reuseIdentifier = "UserCell"
 
 class NewMessageController: UITableViewController {
     // MARK: - Properties
     
-    var delegate: NewMessageControllerDelegate?
+    weak var delegate: NewMessageControllerDelegate?
     
     var userList = [User]() {
         didSet{
@@ -71,7 +71,6 @@ extension NewMessageController {
 extension NewMessageController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = userList[indexPath.row]
-        self.dismiss(animated: true)
-        delegate?.moveToChatController(user: user)
+        delegate?.moveToChatController(self, wantsToStartChatWith: user)
     }
 }

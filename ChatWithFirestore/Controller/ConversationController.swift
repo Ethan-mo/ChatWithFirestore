@@ -134,10 +134,9 @@ extension ConversationController: UITableViewDelegate {
 }
 
 extension ConversationController: NewMessageControllerDelegate {
-    func moveToChatController(user: User) {
-        let controller = ChatController(user: user)
-        print("DEUBG: 현재 선택된 유저의 닉네임은: \(user.nickname)")
-        print("DEBUG: Test")
-        navigationController?.pushViewController(controller, animated: true)
+    func moveToChatController(_ controller: NewMessageController, wantsToStartChatWith user: User) {
+        controller.dismiss(animated: true)
+        let chat = ChatController(user: user)
+        navigationController?.pushViewController(chat, animated: true)
     }
 }

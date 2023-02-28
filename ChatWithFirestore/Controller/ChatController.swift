@@ -7,7 +7,7 @@
 
 import UIKit
 
-private let reuseIdentifierMessageCell = "MessageCell"
+private let reuseIdentifier = "MessageCell"
 
 class ChatController: UICollectionViewController {
     // MARK: - Properties
@@ -19,7 +19,7 @@ class ChatController: UICollectionViewController {
     // MARK: - Lifecycle
     init(user: User) {
         self.user = user
-        super.init(collectionViewLayout: UICollectionViewLayout())
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
     
     required init?(coder: NSCoder) {
@@ -28,6 +28,7 @@ class ChatController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("DEBUG: ChatController가 실행되었습니다.")
         configureUI()
     }
     // 키보드와 함께 사용자 입력작업을 수행하는 뷰 컨트롤러에서 사용하는 것이다.
@@ -47,7 +48,7 @@ class ChatController: UICollectionViewController {
         //collectionView.backgroundColor = .white
         configureNavigationBar(withTitle: user.nickname, prefersLargeTitles: false)
         
-        collectionView.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifierMessageCell)
+        collectionView.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
     }
 }
@@ -57,7 +58,7 @@ extension ChatController {
         return 5
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierMessageCell, for: indexPath) as! MessageCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
         return cell
     }
 }
