@@ -6,9 +6,20 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MessageCell: UICollectionViewCell {
     // MARK: - Properties
+    var message: Message? {
+        didSet{
+            textView.text = message?.text
+        }
+    }
+    var profileImage: String? {
+        didSet{
+            profileImageView.sd_setImage(with: URL(fileURLWithPath: profileImage!))
+        }
+    }
     private lazy var profileImageView: UIImageView = {
         let profileIV = UIImageView()
         profileIV.backgroundColor = .lightGray
@@ -35,7 +46,6 @@ class MessageCell: UICollectionViewCell {
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .red
         
         addSubview(profileImageView)
         profileImageView.anchor(left:leftAnchor, bottom: bottomAnchor, paddingLeft: 8, paddingBottom: -4)

@@ -30,6 +30,7 @@
 		A9C174F229A48B3A00E30BE4 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C174F129A48B3A00E30BE4 /* NewMessageController.swift */; };
 		A9C174F629A5E95C00E30BE4 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C174F529A5E95C00E30BE4 /* UserCell.swift */; };
 		A9CAAABC29ACC4F800FAFA64 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CAAABB29ACC4F800FAFA64 /* MessageCell.swift */; };
+		A9CAAAC429ADB39D00FAFA64 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CAAAC329ADB39D00FAFA64 /* Message.swift */; };
 		A9FDF2CF2995FAE4004EE7EE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		A9C174F129A48B3A00E30BE4 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		A9C174F529A5E95C00E30BE4 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		A9CAAABB29ACC4F800FAFA64 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		A9CAAAC329ADB39D00FAFA64 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FC428156DF59A4043AA34B5E /* Pods-ChatWithFirestore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatWithFirestore.release.xcconfig"; path = "Target Support Files/Pods-ChatWithFirestore/Pods-ChatWithFirestore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				A9AD2D3D299BBF5900E12142 /* User.swift */,
+				A9CAAAC329ADB39D00FAFA64 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				A9AD2D44299E145C00E12142 /* Constants.swift in Sources */,
 				A99025B029A6442F00AC0FCA /* ChatController.swift in Sources */,
 				A9B6F54D2991DBC6000A9A43 /* Extension.swift in Sources */,
+				A9CAAAC429ADB39D00FAFA64 /* Message.swift in Sources */,
 				A9FDF2CF2995FAE4004EE7EE /* LoginViewModel.swift in Sources */,
 				A94CE07729A709BC0025F9E3 /* CustomInputAccessoryView.swift in Sources */,
 			);

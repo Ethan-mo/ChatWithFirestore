@@ -12,10 +12,14 @@ private let reuseIdentifier = "MessageCell"
 class ChatController: UICollectionViewController {
     // MARK: - Properties
     private let user: User
+    private var messages = [Message]()
+    
     private lazy var customInputView: CustomInputAccessoryView = {
         let iv = CustomInputAccessoryView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
+        iv.delegate = self
         return iv
     }()
+
     // MARK: - Lifecycle
     init(user: User) {
         self.user = user
@@ -55,10 +59,15 @@ class ChatController: UICollectionViewController {
 
 extension ChatController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return messages.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
+<<<<<<< HEAD
+=======
+        cell.message = messages[indexPath.row]
+        cell.profileImage = user.profileImageUrl
+>>>>>>> fa30c25 ([feat] delegate로 message 전송)
         return cell
     }
 }
@@ -69,5 +78,14 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 50)
+    }
+}
+// MARK: - CustomInputAccessoryViewDelegate
+extension ChatController: CustomInputAccessoryViewDelegate {
+    func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message: String) {
+        print("DEBUG: Message가 전송되었습니다. \(message)")
+        let tempMessage = Message(text: message, isFromCurrentUser: true)
+        messages.append(tempMessage)
+        collectionView.reloadData()
     }
 }
