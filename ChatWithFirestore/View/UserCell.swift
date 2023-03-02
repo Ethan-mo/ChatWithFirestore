@@ -68,6 +68,6 @@ class UserCell: UITableViewCell {
         guard let profileImage = user?.profileImageUrl else { return }
         nicknameLabel.text = nickname
         fullnameLabel.text = fullname
-        profileImageView.sd_setImage(with: URL(string: profileImage))
+        profileImageView.sd_setImage(with: profileImage)
     }
 }

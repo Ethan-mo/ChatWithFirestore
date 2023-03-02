@@ -63,11 +63,8 @@ extension ChatController {
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
-<<<<<<< HEAD
-=======
         cell.message = messages[indexPath.row]
-        cell.profileImage = user.profileImageUrl
->>>>>>> fa30c25 ([feat] delegate로 message 전송)
+        cell.profileImageView.sd_setImage(with: user.profileImageUrl)
         return cell
     }
 }

@@ -15,12 +15,7 @@ class MessageCell: UICollectionViewCell {
             textView.text = message?.text
         }
     }
-    var profileImage: String? {
-        didSet{
-            profileImageView.sd_setImage(with: URL(fileURLWithPath: profileImage!))
-        }
-    }
-    private lazy var profileImageView: UIImageView = {
+    lazy var profileImageView: UIImageView = {
         let profileIV = UIImageView()
         profileIV.backgroundColor = .lightGray
         profileIV.contentMode = .scaleAspectFill
