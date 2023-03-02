@@ -9,10 +9,13 @@ import UIKit
 
 private let reuseIdentifier = "MessageCell"
 
+
 class ChatController: UICollectionViewController {
     // MARK: - Properties
     private let user: User
     private var messages = [Message]()
+    private var fromCurrentUser = false
+    var delegate: ChatControllerDelegate?
     
     private lazy var customInputView: CustomInputAccessoryView = {
         let iv = CustomInputAccessoryView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
@@ -55,6 +58,7 @@ class ChatController: UICollectionViewController {
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
     }
+
 }
 
 extension ChatController {
@@ -81,7 +85,8 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
 extension ChatController: CustomInputAccessoryViewDelegate {
     func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message: String) {
         print("DEBUG: Message가 전송되었습니다. \(message)")
-        let tempMessage = Message(text: message, isFromCurrentUser: true)
+        fromCurrentUser.toggle()
+        let tempMessage = Message(text: message, isFromCurrentUser: fromCurrentUser)
         messages.append(tempMessage)
         collectionView.reloadData()
     }
