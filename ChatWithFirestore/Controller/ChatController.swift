@@ -15,7 +15,6 @@ class ChatController: UICollectionViewController {
     private let user: User
     private var messages = [Message]()
     private var fromCurrentUser = false
-    var delegate: ChatControllerDelegate?
     
     private lazy var customInputView: CustomInputAccessoryView = {
         let iv = CustomInputAccessoryView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
