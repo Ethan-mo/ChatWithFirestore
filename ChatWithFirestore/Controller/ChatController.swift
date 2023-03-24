@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 private let reuseIdentifier = "MessageCell"
 
@@ -13,7 +14,11 @@ private let reuseIdentifier = "MessageCell"
 class ChatController: UICollectionViewController {
     // MARK: - Properties
     private let user: User
-    private var messages = [Message]()
+    private var messages = [Message]() {
+        didSet{
+            collectionView.reloadData()
+        }
+    }
     private var fromCurrentUser = false
     
     private lazy var customInputView: CustomInputAccessoryView = {
@@ -36,6 +41,7 @@ class ChatController: UICollectionViewController {
         super.viewDidLoad()
         print("DEBUG: ChatController가 실행되었습니다.")
         configureUI()
+        fetchMessage()
     }
     // 키보드와 함께 사용자 입력작업을 수행하는 뷰 컨트롤러에서 사용하는 것이다.
     // customInputView를 사용할 때, 사용하고자 한다.
@@ -48,6 +54,11 @@ class ChatController: UICollectionViewController {
     
     // MARK: - Selector
     // MARK: - API
+    func fetchMessage() {
+        Service.fetchMessage(forUser: user) { messages in
+            self.messages = messages
+        }
+    }
     // MARK: - Helper
     
     func configureUI() {
@@ -56,6 +67,7 @@ class ChatController: UICollectionViewController {
         
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
+        
     }
 
 }
@@ -84,9 +96,16 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
 extension ChatController: CustomInputAccessoryViewDelegate {
     func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message: String) {
         print("DEBUG: Message가 전송되었습니다. \(message)")
-        fromCurrentUser.toggle()
-        let tempMessage = Message(text: message, isFromCurrentUser: fromCurrentUser)
-        messages.append(tempMessage)
-        collectionView.reloadData()
+        Service.uploadMessage(message, to: user) { error in
+            if let error = error {
+                print("오류발생")
+                return
+            }
+            inputView.clearMessageText()
+        }
+
+//        let tempMessage = Message(text: message, isFromCurrentUser: fromCurrentUser)
+//        messages.append(tempMessage)
+//        collectionView.reloadData()
     }
 }

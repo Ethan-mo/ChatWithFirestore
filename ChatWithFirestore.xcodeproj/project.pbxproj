@@ -29,6 +29,7 @@
 		A9BEEE50299B466700F6264D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEEE4F299B466700F6264D /* UserService.swift */; };
 		A9C174F229A48B3A00E30BE4 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C174F129A48B3A00E30BE4 /* NewMessageController.swift */; };
 		A9C174F629A5E95C00E30BE4 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C174F529A5E95C00E30BE4 /* UserCell.swift */; };
+		A9C3C17129B082240022A277 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C3C17029B082240022A277 /* Service.swift */; };
 		A9CAAABC29ACC4F800FAFA64 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CAAABB29ACC4F800FAFA64 /* MessageCell.swift */; };
 		A9CAAAC429ADB39D00FAFA64 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CAAAC329ADB39D00FAFA64 /* Message.swift */; };
 		A9CAAACA29B03A3600FAFA64 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CAAAC929B03A3600FAFA64 /* MessageViewModel.swift */; };
@@ -61,6 +62,7 @@
 		A9BEEE4F299B466700F6264D /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		A9C174F129A48B3A00E30BE4 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		A9C174F529A5E95C00E30BE4 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		A9C3C17029B082240022A277 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		A9CAAABB29ACC4F800FAFA64 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		A9CAAAC329ADB39D00FAFA64 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A9CAAAC929B03A3600FAFA64 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				A9BEEE4F299B466700F6264D /* UserService.swift */,
 				A9AD2D41299E13FE00E12142 /* AuthService.swift */,
+				A9C3C17029B082240022A277 /* Service.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				A99025B029A6442F00AC0FCA /* ChatController.swift in Sources */,
 				A9B6F54D2991DBC6000A9A43 /* Extension.swift in Sources */,
 				A9CAAAC429ADB39D00FAFA64 /* Message.swift in Sources */,
+				A9C3C17129B082240022A277 /* Service.swift in Sources */,
 				A9FDF2CF2995FAE4004EE7EE /* LoginViewModel.swift in Sources */,
 				A94CE07729A709BC0025F9E3 /* CustomInputAccessoryView.swift in Sources */,
 			);

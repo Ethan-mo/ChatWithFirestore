@@ -59,7 +59,8 @@ struct AuthService{
                     }
                     guard let uid = result?.user.uid else { return }
                     // 1) RealTime Database에 들어갈 value를 생성
-                    let values = ["email": email,
+                    let values = ["uid": uid,
+                                  "email": email,
                                   "username": username,
                                   "fullname": fullname,
                                   "profileImageUrl":profileImageUrl]
