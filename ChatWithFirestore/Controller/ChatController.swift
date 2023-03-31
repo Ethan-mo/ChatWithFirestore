@@ -57,6 +57,7 @@ class ChatController: UICollectionViewController {
     func fetchMessage() {
         Service.fetchMessage(forUser: user) { messages in
             self.messages = messages
+            print("가져온 데이터는: \(messages)이다.")
             self.collectionView.reloadData()
         }
     }

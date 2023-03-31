@@ -25,6 +25,7 @@ struct Service {
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
         let data = ["text": message, "fromId": currentUid, "toId": user.uid, "timestamp": Timestamp(date: Date())] as [String : Any]
         FS_MESSAGE.document(currentUid).collection(user.uid).addDocument(data: data) { _ in
+            print("\(currentUid)폴더안에, \(user.uid)폴더안에,\(data)를 저장하였다.")
             FS_MESSAGE.document(user.uid).collection(currentUid).addDocument(data: data, completion: completion)
         }
     }
