@@ -59,6 +59,7 @@ class ChatController: UICollectionViewController {
             self.messages = messages
             print("가져온 데이터는: \(messages)이다.")
             self.collectionView.reloadData()
+            self.collectionView.scrollToItem(at: [0, self.messages.count - 1], at: .bottom, animated: true)
         }
     }
     // MARK: - Helper
@@ -69,6 +70,7 @@ class ChatController: UICollectionViewController {
         
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
+        collectionView.keyboardDismissMode = .interactive
         
     }
 

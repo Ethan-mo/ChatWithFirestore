@@ -33,6 +33,7 @@
 		A9CAAABC29ACC4F800FAFA64 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CAAABB29ACC4F800FAFA64 /* MessageCell.swift */; };
 		A9CAAAC429ADB39D00FAFA64 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CAAAC329ADB39D00FAFA64 /* Message.swift */; };
 		A9CAAACA29B03A3600FAFA64 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CAAAC929B03A3600FAFA64 /* MessageViewModel.swift */; };
+		A9D21E6C29DBEB8A004C4A0C /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E6B29DBEB8A004C4A0C /* ConversationCell.swift */; };
 		A9FDF2CF2995FAE4004EE7EE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		A9CAAABB29ACC4F800FAFA64 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		A9CAAAC329ADB39D00FAFA64 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A9CAAAC929B03A3600FAFA64 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		A9D21E6B29DBEB8A004C4A0C /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FC428156DF59A4043AA34B5E /* Pods-ChatWithFirestore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatWithFirestore.release.xcconfig"; path = "Target Support Files/Pods-ChatWithFirestore/Pods-ChatWithFirestore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +187,7 @@
 				A9C174F529A5E95C00E30BE4 /* UserCell.swift */,
 				A94CE07629A709BC0025F9E3 /* CustomInputAccessoryView.swift */,
 				A9CAAABB29ACC4F800FAFA64 /* MessageCell.swift */,
+				A9D21E6B29DBEB8A004C4A0C /* ConversationCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				A99025B029A6442F00AC0FCA /* ChatController.swift in Sources */,
 				A9B6F54D2991DBC6000A9A43 /* Extension.swift in Sources */,
 				A9CAAAC429ADB39D00FAFA64 /* Message.swift in Sources */,
+				A9D21E6C29DBEB8A004C4A0C /* ConversationCell.swift in Sources */,
 				A9C3C17129B082240022A277 /* Service.swift in Sources */,
 				A9FDF2CF2995FAE4004EE7EE /* LoginViewModel.swift in Sources */,
 				A94CE07729A709BC0025F9E3 /* CustomInputAccessoryView.swift in Sources */,

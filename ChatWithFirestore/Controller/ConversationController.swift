@@ -12,7 +12,13 @@ private let reuserIdentifier: String = "ConversationCell"
 
 final class ConversationController: UIViewController {
     // MARK: - Properties
-    private let tableView = UITableView()
+    private var tableView = UITableView()
+    private var conversations = [Conversation]() {
+        didSet{
+            tableView.reloadData()
+            configureUI()
+        }
+    }
     
     private lazy var addChat: UIButton = {
         let btn = UIButton(type: .system)
@@ -30,8 +36,10 @@ final class ConversationController: UIViewController {
         super.viewDidLoad()
         UIApplication.shared.statusBarStyle = .lightContent
         //logout()
+        fetchConversation()
         configureUI()
         authenticateUser()
+        
     }
     
     // MARK: - Selector
@@ -49,6 +57,14 @@ final class ConversationController: UIViewController {
     }
     
     // MARK: - API
+    
+    func fetchConversation() {
+        Service.fetchConversations { conversations in
+            print("Conversation 데이터를 가져오는 것이 실행되었습니다.")
+            self.conversations = conversations
+            print("가져온 conversation정보는: \(conversations)")
+        }
+    }
     
     func authenticateUser() {
         if Auth.auth().currentUser?.uid == nil {
@@ -87,11 +103,12 @@ final class ConversationController: UIViewController {
         configureNavigation()
         view.addSubview(addChat)
         addChat.anchor(bottom:view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingBottom: 16, paddingRight: 24)
+        
     }
     
     func configureTableView() {
         tableView.backgroundColor = .white
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuserIdentifier)
+        tableView.register(ConversationCell.self, forCellReuseIdentifier: reuserIdentifier)
         tableView.rowHeight = 80
         tableView.tableFooterView = UIView()
         
@@ -117,11 +134,11 @@ final class ConversationController: UIViewController {
 }
 extension ConversationController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return conversations.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuserIdentifier, for: indexPath)
-         cell.textLabel?.text = "Test"
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuserIdentifier, for: indexPath) as! ConversationCell
+        cell.conversation = conversations[indexPath.row]
         return cell
     }
     
