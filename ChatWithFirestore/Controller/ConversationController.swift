@@ -12,6 +12,7 @@ private let reuserIdentifier: String = "ConversationCell"
 
 final class ConversationController: UIViewController {
     // MARK: - Properties
+    var user: User?
     private var tableView = UITableView()
     private var conversations = [Conversation]() {
         didSet{
@@ -41,11 +42,23 @@ final class ConversationController: UIViewController {
         authenticateUser()
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar(withTitle: "Messages", prefersLargeTitles: true)
+    }
     
     // MARK: - Selector
     @objc func showProfile() {
         print("DEBUG: 눌렀습니다.")
-        logout()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        UserService.fetchUser(withUid: uid) { user in
+            let controller = ProfileController()
+            controller.user = user
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true)
+        }
+        
     }
     @objc func addChatting() {
         print("DEBUG: 채팅하자")
@@ -127,6 +140,13 @@ final class ConversationController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showProfile))
         
     }
+    
+    func showChatController(forUser user: User) {
+        let controller = ChatController(user: user)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -145,7 +165,8 @@ extension ConversationController: UITableViewDataSource {
 }
 extension ConversationController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("DEBUG: 일단 눌러는 진다. ㅋ ")
+        let user = conversations[indexPath.row].user
+        showChatController(forUser: user)
     }
     
 }
@@ -153,7 +174,6 @@ extension ConversationController: UITableViewDelegate {
 extension ConversationController: NewMessageControllerDelegate {
     func moveToChatController(_ controller: NewMessageController, wantsToStartChatWith user: User) {
         controller.dismiss(animated: true)
-        let chat = ChatController(user: user)
-        navigationController?.pushViewController(chat, animated: true)
+        showChatController(forUser: user)
     }
 }

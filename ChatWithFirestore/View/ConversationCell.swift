@@ -34,19 +34,32 @@ class ConversationCell: UITableViewCell {
         message.text = "전달해온 메세지 내용은"
         return message
     }()
-    private var timeStamp: UILabel = {
+    private var timeStampLabel: UILabel = {
        let timeStamp = UILabel()
-        timeStamp.font = UIFont.systemFont(ofSize: 14)
+        timeStamp.font = UIFont.systemFont(ofSize: 12)
+        timeStamp.textColor = .systemGray
         timeStamp.text = "시간"
         return timeStamp
     }()
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .white
         configureUI()
         
+        addSubview(profileImageView)
+        profileImageView.centerY(inView: self, leftAnchor: leftAnchor, paddingLeft: 12)
+        profileImageView.setDimensions(width: 50, height: 50)
+        profileImageView.layer.cornerRadius = 50 / 2
         
+        let stack = UIStackView(arrangedSubviews: [nicknameLabel, messageLabel])
+        stack.spacing = 4
+        stack.axis = .vertical
+        
+        addSubview(stack)
+        stack.anchor(top: profileImageView.topAnchor, left: profileImageView.rightAnchor, right: rightAnchor, paddingLeft: 12, paddingRight: 16)
+        
+        addSubview(timeStampLabel)
+        timeStampLabel.anchor(top: topAnchor, right: rightAnchor, paddingTop: 10, paddingRight: 8)
     }
     
     required init?(coder: NSCoder) {
@@ -56,25 +69,16 @@ class ConversationCell: UITableViewCell {
     // MARK: - Helper
     func configureUI() {
         guard let conversation = conversation else { return }
-        
-        addSubview(profileImageView)
-        profileImageView.centerY(inView: self, leftAnchor: leftAnchor, paddingLeft: 12)
-        profileImageView.setDimensions(width: 56, height: 56)
-        profileImageView.layer.cornerRadius = 28
-        
-        let stack = UIStackView(arrangedSubviews: [nicknameLabel, messageLabel])
-        stack.distribution = .fillEqually
-        stack.axis = .vertical
-        
-        addSubview(stack)
-        stack.anchor(top: profileImageView.topAnchor, left: profileImageView.rightAnchor, bottom: profileImageView.bottomAnchor, right: rightAnchor, paddingLeft: 12, paddingRight: 12)
+        let viewModel = ConversationViewModel(conversation: conversation)
         
         let nickname = conversation.user.nickname
         let message = conversation.message.text
         let profileImage = conversation.user.profileImageUrl
+        
         nicknameLabel.text = nickname
         messageLabel.text = message
         profileImageView.sd_setImage(with: profileImage)
+        timeStampLabel.text = viewModel.timestamp
         
     }
 }

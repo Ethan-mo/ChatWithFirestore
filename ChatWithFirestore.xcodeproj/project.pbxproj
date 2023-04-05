@@ -34,6 +34,9 @@
 		A9CAAAC429ADB39D00FAFA64 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CAAAC329ADB39D00FAFA64 /* Message.swift */; };
 		A9CAAACA29B03A3600FAFA64 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CAAAC929B03A3600FAFA64 /* MessageViewModel.swift */; };
 		A9D21E6C29DBEB8A004C4A0C /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E6B29DBEB8A004C4A0C /* ConversationCell.swift */; };
+		A9D21E6E29DD115F004C4A0C /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E6D29DD115F004C4A0C /* ConversationViewModel.swift */; };
+		A9D21E7229DD59CE004C4A0C /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E7129DD59CE004C4A0C /* ProfileController.swift */; };
+		A9D21E7429DD5B03004C4A0C /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E7329DD5B03004C4A0C /* ProfileHeader.swift */; };
 		A9FDF2CF2995FAE4004EE7EE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,9 @@
 		A9CAAAC329ADB39D00FAFA64 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A9CAAAC929B03A3600FAFA64 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		A9D21E6B29DBEB8A004C4A0C /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		A9D21E6D29DD115F004C4A0C /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
+		A9D21E7129DD59CE004C4A0C /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		A9D21E7329DD5B03004C4A0C /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FC428156DF59A4043AA34B5E /* Pods-ChatWithFirestore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatWithFirestore.release.xcconfig"; path = "Target Support Files/Pods-ChatWithFirestore/Pods-ChatWithFirestore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +173,7 @@
 				A9B6F543299126DC000A9A43 /* ConversationController.swift */,
 				A9C174F129A48B3A00E30BE4 /* NewMessageController.swift */,
 				A99025AF29A6442F00AC0FCA /* ChatController.swift */,
+				A9D21E7129DD59CE004C4A0C /* ProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,6 +184,7 @@
 				A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */,
 				A9BD224329960B3C00AE1987 /* RagistrationViewModel.swift */,
 				A9CAAAC929B03A3600FAFA64 /* MessageViewModel.swift */,
+				A9D21E6D29DD115F004C4A0C /* ConversationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 				A94CE07629A709BC0025F9E3 /* CustomInputAccessoryView.swift */,
 				A9CAAABB29ACC4F800FAFA64 /* MessageCell.swift */,
 				A9D21E6B29DBEB8A004C4A0C /* ConversationCell.swift */,
+				A9D21E7329DD5B03004C4A0C /* ProfileHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -330,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9D21E7229DD59CE004C4A0C /* ProfileController.swift in Sources */,
 				A9B6F52E2991264C000A9A43 /* ViewController.swift in Sources */,
 				A9B6F52A2991264C000A9A43 /* AppDelegate.swift in Sources */,
 				A9B6F54B2991DB6A000A9A43 /* Utilities.swift in Sources */,
@@ -343,9 +353,11 @@
 				A9B6F54929912F31000A9A43 /* RegistrationController.swift in Sources */,
 				A9CAAABC29ACC4F800FAFA64 /* MessageCell.swift in Sources */,
 				A9AD2D3E299BBF5900E12142 /* User.swift in Sources */,
+				A9D21E6E29DD115F004C4A0C /* ConversationViewModel.swift in Sources */,
 				A9B6F54729912F1D000A9A43 /* LoginController.swift in Sources */,
 				A9C174F229A48B3A00E30BE4 /* NewMessageController.swift in Sources */,
 				A9AD2D44299E145C00E12142 /* Constants.swift in Sources */,
+				A9D21E7429DD5B03004C4A0C /* ProfileHeader.swift in Sources */,
 				A99025B029A6442F00AC0FCA /* ChatController.swift in Sources */,
 				A9B6F54D2991DBC6000A9A43 /* Extension.swift in Sources */,
 				A9CAAAC429ADB39D00FAFA64 /* Message.swift in Sources */,
