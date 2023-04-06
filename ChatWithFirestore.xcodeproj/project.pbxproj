@@ -39,6 +39,7 @@
 		A9D21E7429DD5B03004C4A0C /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E7329DD5B03004C4A0C /* ProfileHeader.swift */; };
 		A9D21E7829DEA921004C4A0C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E7729DEA921004C4A0C /* ProfileViewModel.swift */; };
 		A9D21E7A29DEAAF8004C4A0C /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E7929DEAAF8004C4A0C /* ProfileCell.swift */; };
+		A9D21E7C29DECF00004C4A0C /* ProfileFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E7B29DECF00004C4A0C /* ProfileFooter.swift */; };
 		A9FDF2CF2995FAE4004EE7EE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		A9D21E7329DD5B03004C4A0C /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		A9D21E7729DEA921004C4A0C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		A9D21E7929DEAAF8004C4A0C /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		A9D21E7B29DECF00004C4A0C /* ProfileFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFooter.swift; sourceTree = "<group>"; };
 		A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FC428156DF59A4043AA34B5E /* Pods-ChatWithFirestore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatWithFirestore.release.xcconfig"; path = "Target Support Files/Pods-ChatWithFirestore/Pods-ChatWithFirestore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,6 +205,7 @@
 				A9D21E7329DD5B03004C4A0C /* ProfileHeader.swift */,
 				A9D21E7729DEA921004C4A0C /* ProfileViewModel.swift */,
 				A9D21E7929DEAAF8004C4A0C /* ProfileCell.swift */,
+				A9D21E7B29DECF00004C4A0C /* ProfileFooter.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				A9BD224429960B3C00AE1987 /* RagistrationViewModel.swift in Sources */,
 				A9CAAACA29B03A3600FAFA64 /* MessageViewModel.swift in Sources */,
 				A9B6F544299126DC000A9A43 /* ConversationController.swift in Sources */,
+				A9D21E7C29DECF00004C4A0C /* ProfileFooter.swift in Sources */,
 				A9B6F52C2991264C000A9A43 /* SceneDelegate.swift in Sources */,
 				A9AD2D42299E13FE00E12142 /* AuthService.swift in Sources */,
 				A9BEEE50299B466700F6264D /* UserService.swift in Sources */,

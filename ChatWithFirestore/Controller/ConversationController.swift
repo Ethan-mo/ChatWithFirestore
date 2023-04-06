@@ -45,6 +45,7 @@ final class ConversationController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar(withTitle: "Messages", prefersLargeTitles: true)
+        tableView.reloadData()
     }
     
     // MARK: - Selector

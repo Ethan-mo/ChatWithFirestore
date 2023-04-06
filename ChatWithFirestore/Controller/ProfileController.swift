@@ -19,6 +19,7 @@ class ProfileController: UITableViewController {
         }
     }
     private lazy var headerView = ProfileHeader(frame: .init(x: 0, y: 0, width: view.frame.width, height: 360))
+    private lazy var footerView = ProfileFooter(frame: .init(x: 0, y: 0, width: view.frame.width, height: 80))
     
     
     // MARK: - Lifecycle
@@ -46,10 +47,30 @@ class ProfileController: UITableViewController {
         tableView.tableHeaderView = headerView
         headerView.delegate = self
         tableView.register(ProfileCell.self, forCellReuseIdentifier: reuseIdentifier)
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = footerView
+        footerView.delegate = self
         tableView.contentInsetAdjustmentBehavior = .never // 맨 위까지 뷰가 올라오도록...
         tableView.rowHeight = 64
         tableView.backgroundColor = .systemGroupedBackground
+    }
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+        }catch {
+            print("DEBUG: 로그아웃에 실패하였습니다.")
+        }
+        print("DEBUG: 로그아웃에 성공")
+        if Auth.auth().currentUser == nil {
+            presentLoginScreen()
+        }
+    }
+    func presentLoginScreen() {
+        DispatchQueue.main.async {
+            let controller = LoginController()
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true)
+        }
     }
 }
 extension ProfileController {
@@ -63,7 +84,6 @@ extension ProfileController {
         let viewModel = ProfileViewModel(rawValue: indexPath.row)
         cell.viewModel = viewModel
         cell.accessoryType = .disclosureIndicator // 오른쪽에 버튼이 자동으로 생겼다.
-        
         return cell
     }
 }
@@ -76,5 +96,11 @@ extension ProfileController {
 extension ProfileController: ProfileHeaderDelegate {
     func dismissView() {
         self.dismiss(animated: true)
+    }
+}
+
+extension ProfileController: ProfileFooterDelegate {
+    func logoutButtonTapped() {
+        logout()
     }
 }
