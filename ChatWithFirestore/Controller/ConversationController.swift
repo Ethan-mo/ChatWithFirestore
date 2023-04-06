@@ -52,8 +52,7 @@ final class ConversationController: UIViewController {
         print("DEBUG: 눌렀습니다.")
         guard let uid = Auth.auth().currentUser?.uid else { return }
         UserService.fetchUser(withUid: uid) { user in
-            let controller = ProfileController()
-            controller.user = user
+            let controller = ProfileController(style: .insetGrouped)
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true)

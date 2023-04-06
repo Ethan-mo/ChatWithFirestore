@@ -37,6 +37,8 @@
 		A9D21E6E29DD115F004C4A0C /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E6D29DD115F004C4A0C /* ConversationViewModel.swift */; };
 		A9D21E7229DD59CE004C4A0C /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E7129DD59CE004C4A0C /* ProfileController.swift */; };
 		A9D21E7429DD5B03004C4A0C /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E7329DD5B03004C4A0C /* ProfileHeader.swift */; };
+		A9D21E7829DEA921004C4A0C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E7729DEA921004C4A0C /* ProfileViewModel.swift */; };
+		A9D21E7A29DEAAF8004C4A0C /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D21E7929DEAAF8004C4A0C /* ProfileCell.swift */; };
 		A9FDF2CF2995FAE4004EE7EE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +76,8 @@
 		A9D21E6D29DD115F004C4A0C /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
 		A9D21E7129DD59CE004C4A0C /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		A9D21E7329DD5B03004C4A0C /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		A9D21E7729DEA921004C4A0C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		A9D21E7929DEAAF8004C4A0C /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		A9FDF2CE2995FAE4004EE7EE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FC428156DF59A4043AA34B5E /* Pods-ChatWithFirestore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatWithFirestore.release.xcconfig"; path = "Target Support Files/Pods-ChatWithFirestore/Pods-ChatWithFirestore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,6 +201,8 @@
 				A9CAAABB29ACC4F800FAFA64 /* MessageCell.swift */,
 				A9D21E6B29DBEB8A004C4A0C /* ConversationCell.swift */,
 				A9D21E7329DD5B03004C4A0C /* ProfileHeader.swift */,
+				A9D21E7729DEA921004C4A0C /* ProfileViewModel.swift */,
+				A9D21E7929DEAAF8004C4A0C /* ProfileCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -342,6 +348,7 @@
 				A9D21E7229DD59CE004C4A0C /* ProfileController.swift in Sources */,
 				A9B6F52E2991264C000A9A43 /* ViewController.swift in Sources */,
 				A9B6F52A2991264C000A9A43 /* AppDelegate.swift in Sources */,
+				A9D21E7829DEA921004C4A0C /* ProfileViewModel.swift in Sources */,
 				A9B6F54B2991DB6A000A9A43 /* Utilities.swift in Sources */,
 				A9BD224429960B3C00AE1987 /* RagistrationViewModel.swift in Sources */,
 				A9CAAACA29B03A3600FAFA64 /* MessageViewModel.swift in Sources */,
@@ -351,6 +358,7 @@
 				A9BEEE50299B466700F6264D /* UserService.swift in Sources */,
 				A9C174F629A5E95C00E30BE4 /* UserCell.swift in Sources */,
 				A9B6F54929912F31000A9A43 /* RegistrationController.swift in Sources */,
+				A9D21E7A29DEAAF8004C4A0C /* ProfileCell.swift in Sources */,
 				A9CAAABC29ACC4F800FAFA64 /* MessageCell.swift in Sources */,
 				A9AD2D3E299BBF5900E12142 /* User.swift in Sources */,
 				A9D21E6E29DD115F004C4A0C /* ConversationViewModel.swift in Sources */,

@@ -14,7 +14,11 @@ protocol ProfileHeaderDelegate:class {
 class ProfileHeader: UIView {
     // MARK: - Properties
     var user: User? {
-        didSet {populateUserData()}
+        didSet {
+            print("ProfileHeader: User정보가 들어왔습니다.")
+            print("user:\(user)")
+            populateUserData()
+        }
     }
     let gradient = CAGradientLayer()
     weak var delegate: ProfileHeaderDelegate?
@@ -57,8 +61,7 @@ class ProfileHeader: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
-        
-
+        populateUserData()
     }
     
     required init?(coder: NSCoder) {
@@ -98,7 +101,6 @@ class ProfileHeader: UIView {
     }
     
     func populateUserData() {
-        
         guard let user = user else { return }
         profileImageView.sd_setImage(with: user.profileImageUrl)
         fullnameLabel.text = user.fullname
@@ -112,9 +114,6 @@ class ProfileHeader: UIView {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         gradient.frame = bounds
-        
-        
     }
 }
