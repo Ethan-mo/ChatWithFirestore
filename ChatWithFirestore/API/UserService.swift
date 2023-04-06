@@ -9,6 +9,13 @@ import Foundation
 import Firebase
 
 struct UserService {
+    static func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
+        FS_USER.document(uid).getDocument { (snapshot, error) in
+            guard let dictionary = snapshot?.data() else { return }
+            let user = User(dictionary: dictionary)
+            completion(user)
+        }
+    }
     static func fetchUsers(completion:@escaping([User])-> Void) {
         var userList = [User]()
         FS_USER.getDocuments { snapshot, error in
@@ -22,11 +29,5 @@ struct UserService {
             completion(userList)
         }
     }
-    static func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
-        FS_USER.document(uid).getDocument { (snapshot, error) in
-            guard let dictionary = snapshot?.data() else { return }
-            let user = User(dictionary: dictionary)
-            completion(user)
-        }
-    }
+
 }

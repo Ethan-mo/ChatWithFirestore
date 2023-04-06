@@ -7,11 +7,17 @@
 
 import UIKit
 import SDWebImage
+protocol ProfileHeaderDelegate:class {
+    func dismissView()
+}
 
 class ProfileHeader: UIView {
     // MARK: - Properties
-    var user: User?
+    var user: User? {
+        didSet {populateUserData()}
+    }
     let gradient = CAGradientLayer()
+    weak var delegate: ProfileHeaderDelegate?
     
     private let dismissButton: UIButton = {
         let button = UIButton(type: .system)
@@ -32,7 +38,7 @@ class ProfileHeader: UIView {
     }()
     private let fullnameLabel: UILabel = {
        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .white
         label.text = "풀네임"
         label.textAlignment = .center
@@ -40,7 +46,7 @@ class ProfileHeader: UIView {
     }()
     private let nicknameLabel: UILabel = {
        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .white
         label.text = "닉네임"
         label.textAlignment = .center
@@ -62,19 +68,19 @@ class ProfileHeader: UIView {
     // MARK: - Selectors
     @objc func handleDismissal() {
         print("취소버튼을 눌렀습니다.")
-        
+        delegate?.dismissView()
     }
     
     // MARK: - Helper
     func configureUI() {
         configureGradientLayer()
         
-        profileImageView.setDimensions(width: 200, height: 200)
-        profileImageView.layer.cornerRadius = 100
+        profileImageView.setDimensions(width: 180, height: 180)
+        profileImageView.layer.cornerRadius = 90
         
         addSubview(profileImageView)
         profileImageView.centerX(inView: self)
-        profileImageView.anchor(top:topAnchor, paddingTop: 96)
+        profileImageView.centerY(inView: self)
         
         let stack = UIStackView(arrangedSubviews: [fullnameLabel, nicknameLabel])
         stack.axis = .vertical
@@ -82,11 +88,21 @@ class ProfileHeader: UIView {
         
         addSubview(stack)
         stack.centerX(inView: self)
-        stack.anchor(top: profileImageView.bottomAnchor, paddingTop: 16)
+        stack.anchor(top: profileImageView.bottomAnchor, paddingTop: 12)
         
         addSubview(dismissButton)
         dismissButton.anchor(top: topAnchor, left: leftAnchor, paddingTop: 44, paddingLeft: 12)
         dismissButton.setDimensions(width: 48, height: 48)
+               
+        
+    }
+    
+    func populateUserData() {
+        
+        guard let user = user else { return }
+        profileImageView.sd_setImage(with: user.profileImageUrl)
+        fullnameLabel.text = user.fullname
+        nicknameLabel.text = "@" + user.nickname 
     }
 
     func configureGradientLayer() {
