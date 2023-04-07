@@ -11,11 +11,16 @@ import JGProgressHUD
 protocol AuthenticationControllerProtocol {
     func checkFormStatus()
 }
+protocol AuthenticationDelegate: class {
+    func authenticationComplete()
+}
 
 class LoginController: UIViewController {
     // MARK: - Properties
     
     private var viewModel = LoginViewModel()
+    
+    weak var delegate: AuthenticationDelegate?
     
     private let logoImageView: UIImageView = {
         let iv = UIImageView()
@@ -77,6 +82,7 @@ class LoginController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
             if let error = error {
                 self.showLoader(false)
+                self.delegate?.authenticationComplete()
                 customAlert(view: self, alertTitle: "알림", alertMessage: "존재하지 않는 아이디입니다.") { action in
                     // Alert을 끄는 동작
                     return

@@ -45,6 +45,8 @@ final class ConversationController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar(withTitle: "Messages", prefersLargeTitles: true)
+        fetchConversation()
+        configureUI()
         tableView.reloadData()
     }
     
@@ -176,9 +178,11 @@ extension ConversationController: NewMessageControllerDelegate {
         showChatController(forUser: user)
     }
 }
+// MARK: - ProfileControllerDelegate
 
 extension ConversationController: ProfileControllerDelegate {
     func handleLogout() {
         logout()
     }
 }
+

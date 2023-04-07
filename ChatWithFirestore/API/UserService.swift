@@ -17,16 +17,9 @@ struct UserService {
         }
     }
     static func fetchUsers(completion:@escaping([User])-> Void) {
-        var userList = [User]()
         FS_USER.getDocuments { snapshot, error in
-            snapshot?.documents.forEach({ document in
-                
-                let dictionary = document.data()
-                let user = User(dictionary: dictionary)
-                
-                userList.append(user)
-            })
-            completion(userList)
+            guard let users = snapshot?.documents.map({ User(dictionary: $0.data()) }) else { return }
+            completion(users)
         }
     }
 

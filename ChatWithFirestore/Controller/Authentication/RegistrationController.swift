@@ -11,6 +11,7 @@ import Firebase
 final class RegistrationController: UIViewController {
     // MARK: - Properties
     private var viewModel = RegistrationViewModel()
+    weak var delegate:AuthenticationDelegate?
     
     private let imagePicker = UIImagePickerController()
     private var profileImage: UIImage?
@@ -94,6 +95,7 @@ final class RegistrationController: UIViewController {
             }
             print("DEBUG3️⃣: 유저 정보등록에 성공했습니다.")
             self.showLoader(false)
+            //self.delegate?.authenticationComplete()
             customAlert(view: self, alertTitle: "알림", alertMessage: "계정이 정상적으로 등록되었습니다.") { _ in
                 
                 self.dismiss(animated: true)

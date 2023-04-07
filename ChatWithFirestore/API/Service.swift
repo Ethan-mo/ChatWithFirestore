@@ -29,10 +29,18 @@ struct Service {
             snapshot?.documentChanges.forEach({ change in
                 let dictionary = change.document.data()
                 let message = Message(dictionary: dictionary)
-                UserService.fetchUser(withUid: message.toID) { user in
-                    let conversation = Conversation(user: user, message: message)
-                    conversations.append(conversation)
-                    completion(conversations)
+                if message.toID == uid {
+                    UserService.fetchUser(withUid: message.fromID) { user in
+                        let conversation = Conversation(user: user, message: message)
+                        conversations.append(conversation)
+                        completion(conversations)
+                    }
+                }else {
+                    UserService.fetchUser(withUid: message.toID) { user in
+                        let conversation = Conversation(user: user, message: message)
+                        conversations.append(conversation)
+                        completion(conversations)
+                    }
                 }
             })
         }
