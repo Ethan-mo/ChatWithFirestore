@@ -18,7 +18,6 @@ class ProfileFooter: UIView {
         btn.setTitle("Logout", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        btn.setDimensions(width: 300, height: 70)
         btn.backgroundColor = .systemPink
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
@@ -29,11 +28,13 @@ class ProfileFooter: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(Logoutbutton)
-        Logoutbutton.anchor(top: topAnchor)
-        Logoutbutton.centerX(inView: self)
+        Logoutbutton.anchor(left:leftAnchor, right: rightAnchor, paddingLeft: 32, paddingRight: 32)
+        Logoutbutton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        Logoutbutton.centerY(inView: self)
     }
     // MARK: - Selector
     @objc func handleLogoutBtn() {
+        print("ProfileFooter에서 Logout버튼이 눌렸습니다.")
         delegate?.logoutButtonTapped()
     }
     

@@ -50,14 +50,12 @@ final class ConversationController: UIViewController {
     
     // MARK: - Selector
     @objc func showProfile() {
-        print("DEBUG: 눌렀습니다.")
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        UserService.fetchUser(withUid: uid) { user in
-            let controller = ProfileController(style: .insetGrouped)
-            let nav = UINavigationController(rootViewController: controller)
-            nav.modalPresentationStyle = .fullScreen
-            self.present(nav, animated: true)
-        }
+        print("DEBUG: 본인의 프로필 이미지를 눌렀습니다.")
+        let controller = ProfileController(style: .insetGrouped)
+        controller.delegate = self
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true)
         
     }
     @objc func addChatting() {
@@ -175,5 +173,11 @@ extension ConversationController: NewMessageControllerDelegate {
     func moveToChatController(_ controller: NewMessageController, wantsToStartChatWith user: User) {
         controller.dismiss(animated: true)
         showChatController(forUser: user)
+    }
+}
+
+extension ConversationController: ProfileControllerDelegate {
+    func handleLogout() {
+        logout()
     }
 }

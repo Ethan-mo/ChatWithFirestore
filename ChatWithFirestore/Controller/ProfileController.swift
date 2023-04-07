@@ -9,7 +9,9 @@ import UIKit
 import Firebase
 
 private let reuseIdentifier = "ProfileCell"
-
+protocol ProfileControllerDelegate: class {
+    func handleLogout()
+}
 class ProfileController: UITableViewController {
     // MARK: - Properties
     var user: User? {
@@ -19,8 +21,8 @@ class ProfileController: UITableViewController {
         }
     }
     private lazy var headerView = ProfileHeader(frame: .init(x: 0, y: 0, width: view.frame.width, height: 360))
-    private lazy var footerView = ProfileFooter(frame: .init(x: 0, y: 0, width: view.frame.width, height: 80))
-    
+    private let footerView = ProfileFooter()
+    weak var delegate: ProfileControllerDelegate?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -47,32 +49,15 @@ class ProfileController: UITableViewController {
         tableView.tableHeaderView = headerView
         headerView.delegate = self
         tableView.register(ProfileCell.self, forCellReuseIdentifier: reuseIdentifier)
+        footerView.frame = .init(x: 0, y: 0, width: view.frame.width, height: 100)
         tableView.tableFooterView = footerView
         footerView.delegate = self
         tableView.contentInsetAdjustmentBehavior = .never // 맨 위까지 뷰가 올라오도록...
         tableView.rowHeight = 64
         tableView.backgroundColor = .systemGroupedBackground
     }
-    func logout() {
-        do {
-            try Auth.auth().signOut()
-        }catch {
-            print("DEBUG: 로그아웃에 실패하였습니다.")
-        }
-        print("DEBUG: 로그아웃에 성공")
-        if Auth.auth().currentUser == nil {
-            presentLoginScreen()
-        }
-    }
-    func presentLoginScreen() {
-        DispatchQueue.main.async {
-            let controller = LoginController()
-            let nav = UINavigationController(rootViewController: controller)
-            nav.modalPresentationStyle = .fullScreen
-            self.present(nav, animated: true)
-        }
-    }
 }
+// MARK: - UITableViewDataSource
 extension ProfileController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ProfileViewModel.allCases.count
@@ -87,20 +72,35 @@ extension ProfileController {
         return cell
     }
 }
+
+// MARK: - UITableViewDelegate
 extension ProfileController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = ProfileViewModel(rawValue: indexPath.row) else { return }
+        print("현재 선택된 버튼은 :\(viewModel.description)")
+    }
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? { // 섹션을 만들어서, 하나의 섹션으로 cell을 구분시켰다.
         return UIView()
     }
 }
 
+// MARK: - ProfileHeaderDelegate
 extension ProfileController: ProfileHeaderDelegate {
     func dismissView() {
         self.dismiss(animated: true)
     }
 }
-
+// MARK: - ProfileFooterDelegate
 extension ProfileController: ProfileFooterDelegate {
     func logoutButtonTapped() {
-        logout()
+        let alert = UIAlertController(title: nil, message: "로그아웃을 하시겠습니까?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { _ in
+            self.dismiss(animated: true) {
+                self.delegate?.handleLogout()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancle", style: .cancel))
+        present(alert, animated: true)
+                        
     }
 }
