@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol NewMessageControllerDelegate: class {
     func moveToChatController(_ controller: NewMessageController , wantsToStartChatWith user:User)
@@ -44,8 +45,11 @@ class NewMessageController: UITableViewController {
     }
     // MARK: - API
     func fetchUsers() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         UserService.fetchUsers { userList in
-            self.userList = userList
+            self.userList = userList.filter({ user in
+                return user.uid != uid
+            })
             print("DEBUG: 출력완료")
         }
     }
