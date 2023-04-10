@@ -75,31 +75,26 @@ class LoginController: UIViewController {
     
     // MARK: - API
     
-    func login() {
+    
+    // MARK: - Selector
+    @objc func handleLogin() {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         showLoader(true, withText: "Logging in")
-        Auth.auth().signIn(withEmail: email, password: password) { user, error in
+        
+        AuthService.shared.logUserIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 self.showLoader(false)
-                self.delegate?.authenticationComplete()
+                //self.showError(error.localizedDescription)
                 customAlert(view: self, alertTitle: "알림", alertMessage: "존재하지 않는 아이디입니다.") { action in
                     // Alert을 끄는 동작
                     return
                 }
-                print("DEBUG: 로그인에 실패하였습니다. error\(error.localizedDescription)")
+                return
             }
-            if let user = user {
-                // 현재 present되고있는 LoginController를 의미
-                self.showLoader(false)
-                self.dismiss(animated: true)
-            }            
+            self.showLoader(false)
+            self.delegate?.authenticationComplete()
         }
-    }
-    
-    // MARK: - Selector
-    @objc func handleLogin() {
-        login()
     }
     @objc func handleShowSignUp() {
         let controller = RegistrationController()

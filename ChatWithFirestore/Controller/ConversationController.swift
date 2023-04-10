@@ -20,6 +20,7 @@ final class ConversationController: UIViewController {
             configureUI()
         }
     }
+    private var conversationsDictionary = [String : Conversation]()
     
     private lazy var addChat: UIButton = {
         let btn = UIButton(type: .system)
@@ -72,9 +73,17 @@ final class ConversationController: UIViewController {
     // MARK: - API
     
     func fetchConversation() {
+        showLoader(true)
         Service.fetchConversations { conversations in
             print("Conversation 데이터를 가져오는 것이 실행되었습니다.")
-            self.conversations = conversations
+            conversations.forEach { conversation in
+                let message = conversation.message
+                self.conversationsDictionary[message.chatPartnerId] = conversation
+                
+            }
+            self.showLoader(false)
+            self.conversations = Array(self.conversationsDictionary.values)
+            self.tableView.reloadData()
             print("가져온 conversation정보는: \(conversations)")
         }
     }

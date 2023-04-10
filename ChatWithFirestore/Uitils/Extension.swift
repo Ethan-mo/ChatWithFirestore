@@ -128,4 +128,9 @@ extension UIViewController {
         // 그래서 UIApplication.shared.statusBarStyle = .lightContent 코드를 사용함.
         UIApplication.shared.statusBarStyle = .lightContent
     }
+    func showError(_ errorMessage: String) {
+        let alert = UIAlertController(title: "error", message: errorMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+        present(alert, animated: true)
+    }
 }

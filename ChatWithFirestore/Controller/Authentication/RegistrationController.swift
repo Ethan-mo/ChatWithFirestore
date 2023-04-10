@@ -89,6 +89,7 @@ final class RegistrationController: UIViewController {
             if let error = error {
                 print("DEBUG3️⃣: 유저 정보등록에 실패했습니다. error: \(error.localizedDescription)")
                 self.showLoader(false)
+                self.showError(error.localizedDescription)
                 customAlert(view: self, alertTitle: "알림", alertMessage: "계정 등록에 실패하였습니다.") { _ in
                     return
                 }

@@ -55,11 +55,13 @@ class ChatController: UICollectionViewController {
     // MARK: - Selector
     // MARK: - API
     func fetchMessage() {
+        showLoader(true)
         Service.fetchMessage(forUser: user) { messages in
             self.messages = messages
             print("가져온 데이터는: \(messages)이다.")
             self.collectionView.reloadData()
             self.collectionView.scrollToItem(at: [0, self.messages.count - 1], at: .bottom, animated: true)
+            self.showLoader(false)
         }
     }
     // MARK: - Helper

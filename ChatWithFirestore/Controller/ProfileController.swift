@@ -38,10 +38,13 @@ class ProfileController: UITableViewController {
     // MARK: - Selectors
     // MARK: - API
     func fetchUser() {
+        showLoader(true)
         guard let uid = Auth.auth().currentUser?.uid else { return }
         UserService.fetchUser(withUid: uid) { user in
             self.user = user
+            self.showLoader(false)
         }
+        
     }
     // MARK: - Helper
     func configureUI() {

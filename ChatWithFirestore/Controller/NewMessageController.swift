@@ -46,10 +46,12 @@ class NewMessageController: UITableViewController {
     // MARK: - API
     func fetchUsers() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        showLoader(true)
         UserService.fetchUsers { userList in
             self.userList = userList.filter({ user in
                 return user.uid != uid
             })
+            self.showLoader(false)
             print("DEBUG: 출력완료")
         }
     }
