@@ -104,6 +104,7 @@ final class ConversationController: UIViewController {
     func presentLoginScreen() {
         DispatchQueue.main.async {
             let controller = LoginController()
+            controller.delegate = self
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true)
@@ -186,3 +187,10 @@ extension ConversationController: ProfileControllerDelegate {
     }
 }
 
+extension ConversationController: AuthenticationDelegate {
+    func authenticationComplete() {
+        dismiss(animated: true)
+        configureUI()
+        fetchConversation()
+    }
+}

@@ -103,6 +103,7 @@ class LoginController: UIViewController {
     }
     @objc func handleShowSignUp() {
         let controller = RegistrationController()
+        controller.delegate = delegate
         navigationController?.pushViewController(controller, animated: true)
     }
     @objc func textDidChange(sender: UITextField) {

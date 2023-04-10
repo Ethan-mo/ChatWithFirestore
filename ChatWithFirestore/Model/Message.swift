@@ -16,6 +16,9 @@ struct Message {
     var user: User?
     
     let isFromCurrentUser: Bool
+    var chatPartnerId: String {
+        return isFromCurrentUser ? toID : fromID
+    }
     
     init(dictionary: [String: Any]) {
         self.text = dictionary["text"] as? String ?? ""
